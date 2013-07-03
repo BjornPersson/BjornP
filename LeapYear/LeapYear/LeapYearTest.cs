@@ -17,5 +17,17 @@ namespace LeapYear
         {
             Assert.IsFalse(LeapYear.IsLeapYear(1999));
         }
+
+        [TestMethod]
+        public void TwoThousandIsALeapYear()
+        {
+            Assert.IsTrue(LeapYear.IsLeapYear(2000));
+        }
+
+        [TestMethod]
+        public void NineTeenHundredIsNotALeapYear()
+        {
+            Assert.IsFalse(LeapYear.IsLeapYear(1900));
+        }
     }
 }
