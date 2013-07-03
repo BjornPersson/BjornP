@@ -27,8 +27,6 @@ namespace MovieStore
             while (rentals.MoveNext())
             {
                 Rental each = (Rental)rentals.Current;
-                
-                var thisAmount = each.GetCharge();
 
                 // Add frequent renter points
                 frequentRenterPoints++;
@@ -42,8 +40,8 @@ namespace MovieStore
 
                 // Show figures for this rental
                 result += "\t" + each.Movie.Title + "\t"
-                + thisAmount.ToString() + "\n";
-                totalAmount += thisAmount;
+                + each.GetCharge().ToString() + "\n";
+                totalAmount += each.GetCharge();
             }
 
             // Add footer lines
