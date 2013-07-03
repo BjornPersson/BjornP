@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Customer.cs" />
     <Compile Include="Movie.cs" />
+    <Compile Include="PriceCodes.cs" />
     <Compile Include="Rental.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
