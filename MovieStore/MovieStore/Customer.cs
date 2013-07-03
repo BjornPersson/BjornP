@@ -28,15 +28,7 @@ namespace MovieStore
             {
                 Rental each = (Rental)rentals.Current;
 
-                // Add frequent renter points
-                frequentRenterPoints++;
-
-                // Add bonus for a two-day new release rental
-                if ((each.Movie.PriceCode == PriceCodes.NewRelease)
-                && (each.DaysRented > 1))
-                {
-                    frequentRenterPoints++;
-                }
+                frequentRenterPoints = GetFrequentRenterPoints(frequentRenterPoints, each);
 
                 // Show figures for this rental
                 result += "\t" + each.Movie.Title + "\t"
@@ -49,6 +41,20 @@ namespace MovieStore
             result += "You earned " + frequentRenterPoints.ToString()
             + " frequent renter points.";
             return result;
+        }
+
+        private static int GetFrequentRenterPoints(int frequentRenterPoints, Rental each)
+        {
+            // Add frequent renter points
+            frequentRenterPoints++;
+
+            // Add bonus for a two-day new release rental
+            if ((each.Movie.PriceCode == PriceCodes.NewRelease)
+                && (each.DaysRented > 1))
+            {
+                frequentRenterPoints++;
+            }
+            return frequentRenterPoints;
         }
     }
 }
