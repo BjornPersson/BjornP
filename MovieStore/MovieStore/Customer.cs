@@ -28,6 +28,8 @@ namespace MovieStore
             {
                 double thisAmount = 0;
                 Rental each = (Rental)rentals.Current;
+                
+                // Determine amounts for each line
                 switch (each.Movie.PriceCode)
                 {
                     case PriceCodes.Regular:
@@ -48,16 +50,24 @@ namespace MovieStore
                         }
                         break;
                 }
+
+                // Add frequent renter points
                 frequentRenterPoints++;
+
+                // Add bonus for a two-day new release rental
                 if ((each.Movie.PriceCode == PriceCodes.NewRelease)
                 && (each.DaysRented > 1))
                 {
                     frequentRenterPoints++;
                 }
+
+                // Show figures for this rental
                 result += "\t" + each.Movie.Title + "\t"
                 + thisAmount.ToString() + "\n";
                 totalAmount += thisAmount;
             }
+
+            // Add footer lines
             result += "Amount owed is " + totalAmount.ToString() + "\n";
             result += "You earned " + frequentRenterPoints.ToString()
             + " frequent renter points.";
