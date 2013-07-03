@@ -11,11 +11,5 @@ namespace LeapYear
         {
             Assert.IsTrue(LeapYear.IsLeapYear(1996));
         }
-       
-        [TestMethod]
-        public void NineTeen99IsNotALeapYear()
-        {
-            Assert.IsFalse(LeapYear.IsLeapYear(1999));
-        }
     }
 }
