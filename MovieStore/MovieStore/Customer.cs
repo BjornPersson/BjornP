@@ -53,31 +53,31 @@ namespace MovieStore
             return result;
         }
 
-        private static double AmountFor(Rental each)
+        private static double AmountFor(Rental rental)
         {
-            double thisAmount = 0;
-            // Determine amounts for each line
-            switch (each.Movie.PriceCode)
+            double result = 0;
+            // Determine amounts for rental line
+            switch (rental.Movie.PriceCode)
             {
                 case PriceCodes.Regular:
-                    thisAmount += 2;
-                    if (each.DaysRented > 2)
+                    result += 2;
+                    if (rental.DaysRented > 2)
                     {
-                        thisAmount += (each.DaysRented - 2)*1.5;
+                        result += (rental.DaysRented - 2)*1.5;
                     }
                     break;
                 case PriceCodes.NewRelease:
-                    thisAmount += each.DaysRented*3;
+                    result += rental.DaysRented*3;
                     break;
                 case PriceCodes.Childrens:
-                    thisAmount += 1.5;
-                    if (each.DaysRented > 3)
+                    result += 1.5;
+                    if (rental.DaysRented > 3)
                     {
-                        thisAmount = (each.DaysRented - 3)*1.5;
+                        result = (rental.DaysRented - 3)*1.5;
                     }
                     break;
             }
-            return thisAmount;
+            return result;
         }
     }
 }
