@@ -28,7 +28,7 @@ namespace MovieStore
             {
                 Rental each = (Rental)rentals.Current;
                 
-                var thisAmount = AmountFor(each);
+                var thisAmount = Rental.GetCharge(each);
 
                 // Add frequent renter points
                 frequentRenterPoints++;
@@ -50,33 +50,6 @@ namespace MovieStore
             result += "Amount owed is " + totalAmount.ToString() + "\n";
             result += "You earned " + frequentRenterPoints.ToString()
             + " frequent renter points.";
-            return result;
-        }
-
-        private static double AmountFor(Rental rental)
-        {
-            double result = 0;
-            // Determine amounts for rental line
-            switch (rental.Movie.PriceCode)
-            {
-                case PriceCodes.Regular:
-                    result += 2;
-                    if (rental.DaysRented > 2)
-                    {
-                        result += (rental.DaysRented - 2)*1.5;
-                    }
-                    break;
-                case PriceCodes.NewRelease:
-                    result += rental.DaysRented*3;
-                    break;
-                case PriceCodes.Childrens:
-                    result += 1.5;
-                    if (rental.DaysRented > 3)
-                    {
-                        result = (rental.DaysRented - 3)*1.5;
-                    }
-                    break;
-            }
             return result;
         }
     }
