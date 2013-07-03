@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="LeapYear.cs" />
     <Compile Include="LeapYearTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
