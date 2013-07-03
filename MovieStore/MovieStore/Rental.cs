@@ -21,27 +21,27 @@
             get { return m_Movie; }
         }
 
-        public static double GetCharge(Rental rental)
+        public double GetCharge()
         {
             double result = 0;
             // Determine amounts for rental line
-            switch (rental.Movie.PriceCode)
+            switch (Movie.PriceCode)
             {
                 case PriceCodes.Regular:
                     result += 2;
-                    if (rental.DaysRented > 2)
+                    if (DaysRented > 2)
                     {
-                        result += (rental.DaysRented - 2)*1.5;
+                        result += (DaysRented - 2)*1.5;
                     }
                     break;
                 case PriceCodes.NewRelease:
-                    result += rental.DaysRented*3;
+                    result += DaysRented*3;
                     break;
                 case PriceCodes.Childrens:
                     result += 1.5;
-                    if (rental.DaysRented > 3)
+                    if (DaysRented > 3)
                     {
-                        result = (rental.DaysRented - 3)*1.5;
+                        result = (DaysRented - 3)*1.5;
                     }
                     break;
             }

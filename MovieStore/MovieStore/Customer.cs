@@ -28,7 +28,7 @@ namespace MovieStore
             {
                 Rental each = (Rental)rentals.Current;
                 
-                var thisAmount = Rental.GetCharge(each);
+                var thisAmount = each.GetCharge();
 
                 // Add frequent renter points
                 frequentRenterPoints++;
