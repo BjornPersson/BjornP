@@ -26,30 +26,9 @@ namespace MovieStore
             string result = "Rental record for " + m_Name + "\n";
             while (rentals.MoveNext())
             {
-                double thisAmount = 0;
                 Rental each = (Rental)rentals.Current;
                 
-                // Determine amounts for each line
-                switch (each.Movie.PriceCode)
-                {
-                    case PriceCodes.Regular:
-                        thisAmount += 2;
-                        if (each.DaysRented > 2)
-                        {
-                            thisAmount += (each.DaysRented - 2) * 1.5;
-                        }
-                        break;
-                    case PriceCodes.NewRelease:
-                        thisAmount += each.DaysRented * 3;
-                        break;
-                    case PriceCodes.Childrens:
-                        thisAmount += 1.5;
-                        if (each.DaysRented > 3)
-                        {
-                            thisAmount = (each.DaysRented - 3) * 1.5;
-                        }
-                        break;
-                }
+                var thisAmount = AmountFor(each);
 
                 // Add frequent renter points
                 frequentRenterPoints++;
@@ -72,6 +51,33 @@ namespace MovieStore
             result += "You earned " + frequentRenterPoints.ToString()
             + " frequent renter points.";
             return result;
+        }
+
+        private static double AmountFor(Rental each)
+        {
+            double thisAmount = 0;
+            // Determine amounts for each line
+            switch (each.Movie.PriceCode)
+            {
+                case PriceCodes.Regular:
+                    thisAmount += 2;
+                    if (each.DaysRented > 2)
+                    {
+                        thisAmount += (each.DaysRented - 2)*1.5;
+                    }
+                    break;
+                case PriceCodes.NewRelease:
+                    thisAmount += each.DaysRented*3;
+                    break;
+                case PriceCodes.Childrens:
+                    thisAmount += 1.5;
+                    if (each.DaysRented > 3)
+                    {
+                        thisAmount = (each.DaysRented - 3)*1.5;
+                    }
+                    break;
+            }
+            return thisAmount;
         }
     }
 }
